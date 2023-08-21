@@ -10,13 +10,34 @@ struct ponto
 
 Ponto *listaPontos;
 
-void add(float x, float y)
+void addFirst(float x, float y) // Adiciona no começo da Lista;
 {
     Ponto *p = (Ponto *)malloc(sizeof(Ponto));
     p->x = x;
     p->y = y;
     p->prox = listaPontos;
     listaPontos = p;
+}
+
+void addLast(float x, float y) // Adiciona no final da Lista
+{
+    Ponto *p = (Ponto *)malloc(sizeof(Ponto));
+    p->x = x;
+    p->y = y;
+    p->prox = NULL;
+    if (listaPontos == NULL)
+    {
+        listaPontos = p;
+    }
+    else
+    {
+        Ponto *listaAux = listaPontos;
+        while (listaAux->prox != NULL)
+        {
+            listaAux = listaAux->prox;
+        }
+        listaAux->prox = p;
+    }
 }
 
 void imprime(Ponto *p)
@@ -31,9 +52,11 @@ void imprime(Ponto *p)
 
 int main()
 {
-    add(1, 5);
-    add(2, 7);
-    add(5, 3);
+    addFirst(1, 5);
+    addFirst(2, 7);
+    addFirst(5, 3);
+    addLast(1, 1);
+    addLast(8, 8);
 
     Ponto *auxLista = listaPontos;
 
