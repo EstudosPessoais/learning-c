@@ -10,16 +10,21 @@ struct ponto
 
 Ponto *listaPontos;
 
-void addFirst(float x, float y) // Adiciona no começo da Lista;
+int lenght = 0;
+
+// Adiciona no começo da Lista;
+void addFirst(float x, float y)
 {
     Ponto *p = (Ponto *)malloc(sizeof(Ponto));
     p->x = x;
     p->y = y;
     p->prox = listaPontos;
     listaPontos = p;
+    lenght++;
 }
 
-void addLast(float x, float y) // Adiciona no final da Lista
+// Adiciona no final da Lista
+void addLast(float x, float y)
 {
     Ponto *p = (Ponto *)malloc(sizeof(Ponto));
     p->x = x;
@@ -37,9 +42,46 @@ void addLast(float x, float y) // Adiciona no final da Lista
             listaAux = listaAux->prox;
         }
         listaAux->prox = p;
+        lenght++;
     }
 }
 
+// Função adiciona em qualquer lugar da lista
+void addIndex(float x, float y, int index)
+{
+    Ponto *p = (Ponto *)malloc(sizeof(Ponto));
+    p->x = x;
+    p->y = y;
+
+    if (index > lenght)
+    {
+        printf("Posicao invalida");
+    }
+    else
+    {
+        if (index == 0)
+        {
+            p->prox = listaPontos;
+            listaPontos = p;
+        }
+        else
+        {
+            Ponto *listaAux = listaPontos;
+            int i = 0;
+            while (i != index - 1)
+            {
+                listaAux = listaAux->prox;
+                i++;
+            }
+
+            p->prox = listaAux->prox;
+            listaAux->prox = p;
+        }
+        lenght++;
+    }
+}
+
+// Função que imprime
 void imprime(Ponto *p)
 {
 
@@ -50,6 +92,7 @@ void imprime(Ponto *p)
     }
 }
 
+// Main function
 int main()
 {
     addFirst(1, 5);
@@ -57,6 +100,8 @@ int main()
     addFirst(5, 3);
     addLast(1, 1);
     addLast(8, 8);
+    addIndex(9, 9, 3);
+    addIndex(10, 10, 3);
 
     Ponto *auxLista = listaPontos;
 
