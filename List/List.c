@@ -19,13 +19,23 @@ void add(float x, float y)
     listaPontos = p;
 }
 
+void imprime()
+{
+    Ponto *auxLista = listaPontos;
+    while (auxLista != NULL)
+    {
+        printf("\nPonto(%.1f, %.1f)", auxLista->x, auxLista->y);
+        auxLista = auxLista->prox;
+    }
+}
+
 int main()
 {
     add(1, 5);
     add(2, 7);
     add(5, 3);
 
-    printf("%f", listaPontos->prox->prox->x);
+    imprime();
 
     return 0;
 };
