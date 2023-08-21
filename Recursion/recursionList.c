@@ -33,6 +33,7 @@ void addLast(float x, float y)
     if (listaPontos == NULL)
     {
         listaPontos = p;
+        lenght++;
     }
     else
     {
@@ -81,6 +82,33 @@ void addIndex(float x, float y, int index)
     }
 }
 
+void removeIndex(int index)
+{
+    if (index > lenght || lenght == 0)
+    {
+        printf("Posição inválida ou lista vazia");
+    }
+    else
+    {
+        if (index == 0)
+        {
+            listaPontos = listaPontos->prox;
+        }
+        else
+        {
+            Ponto *listaAux = listaPontos;
+            int i = 0;
+            while (i != index - 1)
+            {
+                listaAux = listaAux->prox;
+                i++;
+            }
+            listaAux->prox = listaAux->prox->prox;
+        }
+        lenght--;
+    }
+}
+
 // Função que imprime
 void imprime(Ponto *p)
 {
@@ -102,6 +130,8 @@ int main()
     addLast(8, 8);
     addIndex(9, 9, 3);
     addIndex(10, 10, 3);
+
+    removeIndex(0);
 
     Ponto *auxLista = listaPontos;
 
