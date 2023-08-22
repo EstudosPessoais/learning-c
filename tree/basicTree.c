@@ -11,7 +11,7 @@ struct nodo
 Nodo *create(int valor)
 {
     Nodo *n = (Nodo *)malloc(sizeof(Nodo));
-    n->valor = 5;
+    n->valor = valor;
     n->esq = NULL;
     n->dir = NULL;
     return n;
